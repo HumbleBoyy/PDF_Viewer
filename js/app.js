@@ -37,7 +37,7 @@ const renderPage = num => {
       });
   
       // Output current page
-      document.querySelector('#page-num').textContent = num;
+      document.querySelector('#page_num').textContent = num;
     });
   };
   
@@ -47,7 +47,7 @@ pdfjsLib
   .promise.then(pdfDoc_ => {
     pdfDoc = pdfDoc_;
 
-    document.querySelector('#page-count').textContent = pdfDoc.numPages;
+    document.querySelector('#page_count').textContent = pdfDoc.numPages;
 
     renderPage(pageNum);
   })
