@@ -40,7 +40,37 @@ const renderPage = num => {
       document.querySelector('#page_num').textContent = num;
     });
   };
+
+// Check for pages Rendering
+const queueRenderingPage = num => {
+    if(pageIsRendering) {
+        pageNumIsPending = num;
+    }else{
+        renderPage(num);
+    }
+}
   
+// Show Previous Page
+const showPrevPage = () => {
+    if(pageNum <= 1){
+        return
+    }
+
+    pageNum --;
+    queueRenderingPage(pageNum);
+}
+
+// Show Next Page
+const showNextPage = () => {
+    if(pageNum >= pdfDoc.numPages){
+        return;
+    }
+
+    pageNum ++;
+    queueRenderingPage(pageNum);
+}
+
+
 // Get Document
 pdfjsLib
   .getDocument(url)
@@ -50,4 +80,17 @@ pdfjsLib
     document.querySelector('#page_count').textContent = pdfDoc.numPages;
 
     renderPage(pageNum);
-  })
+})
+.catch((err)=> {
+    // Display Error
+    const div = document.createElement('div');
+    div.className = 'error';
+    div.appendChild(document.createTextNode(err.message));
+    document.querySelector('body').insertBefore(div, canvas)
+    // Remove top bar
+    document.querySelector('.top_bar').style.display = 'none'
+})
+
+// Button events
+document.querySelector('#prev_page').addEventListener('click', showPrevPage)
+document.querySelector('#next_page').addEventListener('click', showNextPage)

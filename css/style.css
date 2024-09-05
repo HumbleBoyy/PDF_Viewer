@@ -1,0 +1,32 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.top_bar {
+    max-width: 100%;
+    background: #333;
+    color: aliceblue;
+    padding: 1rem;
+}
+
+.btn{
+    background: coral;
+    color: aliceblue;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 0.7rem 2rem;
+}
+
+.page_info{
+    margin-left: 1rem;
+}
+
+
+.error{
+    background: red;
+    color: white;
+    padding: 2rem;
+}
